@@ -5,22 +5,24 @@ face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 # smile classifier
 smile_detector = cv2.CascadeClassifier('haarcascade_smile.xml')
 
+# eye classifier
 eye_detector = cv2.CascadeClassifier('haarcascade_Eye.xml')
 
-#capturing face from webcam value can be anything -- can be a filename or 0 for webcam
+# capturing face from webcam value can be anything -- can be a filename or 0 for webcam
 webcam = cv2.VideoCapture(0)
 
 while True:
 
-    # Read current frame from wecam video stream
+    # Read current frame from webcam video stream
     successful_frame_read, frame = webcam.read()
 
     # if there's an error, abort
     if not successful_frame_read:
         break
 
-    # color to grayscale i.e colorful to gray for optimization, recognization is not hindered in black and white, and rgb has 3 channels but black and white has 1 channels.
+    # color to grayscale i.e colorful to gray for optimization, recognization is not hindered in black and white, and rgb has 3(4 including briteness) channels but black and white has 1 channels.
     # color to gray i.e bgr i.e rgb backwards to gray 
+    
     frame_grayscale = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # detect where all the faces are, return list of co-oordinates, detect faces of all scale. faces here is list of list
